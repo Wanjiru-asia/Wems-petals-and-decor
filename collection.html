@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101012">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; form-action 'self'; upgrade-insecure-requests"><meta name="referrer" content="no-referrer"><title>Collections | WEM'S PETALS AND DECOR</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { color-scheme: dark; --black:#101012; --onyx:#1b191f; --panel:#211e25; --purple:#46145f; --magenta:#c52cae; --orchid:#dc83dc; --white:#f7f2f7; --muted:#bcb5c0; --line:#37313b; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { min-height:100vh; margin:0; background:radial-gradient(ellipse at 80% -20%, #32133b 0, transparent 38%),var(--black); color:var(--white); font-family:"DM Sans",sans-serif; }
+    a { color:inherit; text-decoration:none; }
+    button { font:inherit; }
+    .topbar { position:sticky; z-index:5; top:0; display:flex; align-items:center; justify-content:space-between; min-height:76px; padding:12px clamp(18px,5vw,76px); border-bottom:1px solid rgb(220 131 220 / 18%); background:rgb(16 16 18 / 92%); backdrop-filter:blur(16px); }
+    .brand { display:flex; align-items:center; gap:12px; }
+    .logo-frame { position:relative; display:block; width:78px; height:78px; flex:0 0 78px; overflow:hidden; border:1px solid #bcbac0; border-radius:10px; background:#d9d9d9; }
+    .logo-space { display:block; width:100%; height:100%; border:0; object-fit:contain; }
+    .brand-name { font-family:"Playfair Display",serif; font-size:1rem; font-weight:600; }
+    .brand-name span { color:var(--magenta); }
+    .back-link { display:inline-flex; align-items:center; gap:9px; color:#e7dfe9; font-size:.8rem; }
+    .back-link:hover { color:var(--orchid); }
+    main { width:min(1440px,100%); margin:0 auto; padding:48px clamp(18px,5vw,76px) 90px; }
+    .breadcrumb { display:flex; align-items:center; gap:9px; margin-bottom:28px; color:var(--muted); font-size:.76rem; }
+    .breadcrumb a:hover { color:var(--orchid); }
+    .eyebrow { display:block; margin-bottom:11px; color:var(--orchid); font-size:.68rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; }
+    .collection-heading { display:flex; align-items:end; justify-content:space-between; gap:28px; padding-bottom:28px; border-bottom:1px solid var(--line); }
+    h1 { margin:0; font-family:"Playfair Display",serif; font-size:clamp(2.5rem,5vw,4.5rem); font-weight:500; letter-spacing:-.035em; line-height:1.08; }
+    .collection-intro { max-width:440px; margin:0 0 4px; color:#c9c1cd; font-size:.9rem; line-height:1.75; }
+    .toolbar { display:flex; align-items:center; justify-content:space-between; gap:15px; padding:22px 0 18px; color:var(--muted); font-size:.78rem; }
+    .toolbar strong { color:var(--white); font-weight:500; }
+    .product-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:30px 22px; }
+    .product-card { min-width:0; }
+    .flip-stage { position:relative; overflow:hidden; aspect-ratio:4/5; perspective:1200px; border:1px solid rgb(220 131 220 / 17%); border-radius:17px; background:var(--onyx); }
+    .flip-inner { position:absolute; inset:0; transform-style:preserve-3d; transition:transform .85s cubic-bezier(.2,.7,.2,1); }
+    .product-card:hover .flip-inner, .product-card:focus-within .flip-inner, .product-card.is-flipped .flip-inner { transform:rotateY(180deg); }
+    .product-face { position:absolute; inset:0; overflow:hidden; backface-visibility:hidden; }
+    .product-photo { width:100%; height:100%; display:block; object-fit:cover; transition:transform .6s ease; }
+    .product-card:hover .product-photo { transform:scale(1.035); }
+    .product-face.front::after { position:absolute; inset:45% 0 0; background:linear-gradient(transparent,rgb(13 10 15 / 48%)); content:""; pointer-events:none; }
+    .details-toggle { position:absolute; z-index:1; right:13px; bottom:13px; padding:9px 12px; border:1px solid rgb(255 255 255 / 25%); border-radius:99px; background:rgb(20 17 22 / 76%); color:white; cursor:pointer; font-size:.68rem; backdrop-filter:blur(10px); }
+    .details-toggle:hover { border-color:var(--orchid); background:#36143e; }
+    .product-face.back { display:flex; flex-direction:column; justify-content:center; padding:clamp(18px,3vw,32px); transform:rotateY(180deg); background:radial-gradient(ellipse at 100% 0, rgb(197 44 174 / 22%),transparent 50%),linear-gradient(150deg,#27212a,#171519); }
+    .back-kicker { color:var(--orchid); font-size:.64rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; }
+    .product-face.back h3 { margin:11px 0 12px; font-family:"Playfair Display",serif; font-size:clamp(1.2rem,2vw,1.7rem); font-weight:500; }
+    .product-description { margin:0 0 19px; color:#d0c8d3; font-size:.79rem; line-height:1.7; }
+    .product-meta { display:grid; gap:8px; margin-bottom:18px; color:#e9e2eb; font-size:.75rem; }
+    .product-meta span { color:var(--muted); }
+    .price-line { display:flex; align-items:baseline; gap:7px; min-height:28px; margin-bottom:16px; color:var(--orchid); font-family:"Playfair Display",serif; font-size:1.03rem; }
+    .price-line .amount { min-width:40px; border-bottom:1px dashed #84658a; }
+    .order-link { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:42px; padding:0 14px; border:1px solid #9e349a; border-radius:999px; background:linear-gradient(110deg,#772273,#48124f); color:white; font-size:.72rem; font-weight:700; transition:box-shadow .2s ease,transform .2s ease; }
+    .order-link:hover { box-shadow:0 8px 24px rgb(197 44 174 / 25%); transform:translateY(-1px); }
+    .order-link svg { width:17px; height:17px; fill:none; stroke:var(--orchid); stroke-width:1.7; }
+    .product-info { display:flex; align-items:start; justify-content:space-between; gap:12px; padding:14px 2px 0; }
+    .product-info h2 { margin:0 0 5px; font-family:"Playfair Display",serif; font-size:1.17rem; font-weight:500; }
+    .product-info p { margin:0; color:var(--muted); font-size:.73rem; }
+    .info-price { min-width:25px; border-bottom:1px dashed #625a66; padding-top:5px; }
+    .empty-state { grid-column:1/-1; padding:30px; border:1px solid var(--line); border-radius:16px; background:var(--onyx); color:var(--muted); text-align:center; }
+    .footer-note { margin:48px 0 0; color:var(--muted); font-size:.77rem; line-height:1.7; text-align:center; }
+    @media (max-width:850px) { .product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px 16px; } .collection-heading { align-items:start; flex-direction:column; gap:14px; } }
+    @media (max-width:520px) { .topbar { min-height:66px; } .logo-frame { width:64px; height:64px; flex-basis:64px; } .brand-name { display:none; } main { padding-top:32px; } .product-grid { grid-template-columns:1fr; gap:25px; } .flip-stage { aspect-ratio:4/4.6; } .product-face.back { padding:28px; } .product-face.back h3 { font-size:1.6rem; } .product-description { font-size:.85rem; } .collection-intro { font-size:.84rem; } }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition-duration:.01ms!important; animation-duration:.01ms!important; } }
+      .site-footer { border-top:1px solid rgb(220 131 220 / 18%); background:linear-gradient(180deg,#171419,#111012); }
+    .footer-inner { display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:30px; max-width:1600px; margin:0 auto; padding:42px clamp(20px,4vw,56px); }
+    .footer-brand-title { color:#f7f2f7; font-family:"Playfair Display",serif; font-size:1.05rem; font-weight:600; }
+    .footer-brand-title span { color:#c52cae; }
+    .footer-brand p { max-width:330px; margin:12px 0 0; color:#bcb5c0; font-size:.78rem; line-height:1.7; }
+    .footer-column h2 { margin:4px 0 14px; color:#f6edf7; font-family:"Playfair Display",serif; font-size:1.1rem; font-weight:500; }
+    .footer-links { display:grid; gap:11px; }
+    .footer-link { display:inline-flex; width:fit-content; align-items:center; gap:9px; color:#c8c0cb; font-size:.78rem; text-decoration:none; }
+    .footer-link:hover { color:#dc83dc; }
+    .footer-icon { display:grid; width:24px; height:24px; place-items:center; border:1px solid #4e3852; border-radius:50%; color:#dc83dc; font-size:.72rem; }
+    .footer-bottom { display:flex; justify-content:space-between; gap:15px; max-width:1600px; margin:0 auto; padding:15px clamp(20px,4vw,56px); border-top:1px solid #302832; color:#918895; font-size:.68rem; }
+    @media(max-width:760px) { .footer-inner { grid-template-columns:1fr 1fr; gap:24px; } .footer-brand { grid-column:1/-1; } }
+    @media(max-width:520px) { .footer-inner { grid-template-columns:1fr; gap:22px; padding:34px 20px; } .footer-brand { grid-column:auto; } .footer-bottom { flex-direction:column; padding:14px 20px; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="Wem's Petals and Decor home">
+      <span class="logo-frame"><img class="logo-space" src="images/logo-source.png" alt="Wems Petals floral logo"></span>
+      <span class="brand-name">WEM'S <span>PETALS</span> AND <span>DECOR</span></span>
+    </a>
+    <a class="back-link" href="index.html#collections"><span aria-hidden="true">←</span> Back to collections</a>
+  </header>
+  <main>
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><a href="index.html#collections">Collections</a><span aria-hidden="true">/</span><span id="breadcrumb-current">Ribbon Roses</span></nav>
+    <section aria-labelledby="collection-title">
+      <div class="collection-heading">
+        <div><span class="eyebrow">Handcrafted keepsake blooms</span><h1 id="collection-title">Ribbon Roses</h1>
+        <p class="collection-intro" id="collection-description">Ribbon roses, made by hand in a range of colors and bouquet sizes. Choose a favorite and send us your order on WhatsApp.</p>
+
+        </div>
+      </div>
+      <div class="toolbar" id="products"><strong id="collection-count">3 handcrafted bouquets</strong><span>Hover or tap a photo for details</span></div>
+      <div class="product-grid" id="product-grid"></div>
+    </section>
+    <p class="footer-note">Every bouquet is made to order. Share your preferred size, color, and personal touches with us on WhatsApp.</p>
+  </main>
+
+  <script src="scripts/collection.js" defer></script>
+  <footer class="site-footer" id="contact">
+    <div class="footer-inner">
+      <div class="footer-brand"><div class="footer-brand-title">WEM'S <span>PETALS</span> AND <span>DECOR</span></div><p>Handcrafted ribbon flowers and thoughtful keepsakes, made to bring beauty to life's special moments.</p></div>
+      <div class="footer-column"><h2>Get in touch</h2><div class="footer-links"><a class="footer-link" href="https://wa.me/254746053722" target="_blank" rel="noopener noreferrer"><span class="footer-icon" aria-hidden="true">W</span>WhatsApp · +254 746 053 722</a><a class="footer-link" href="mailto:hello@yourdomain.co.ke"><span class="footer-icon" aria-hidden="true">@</span>hello@yourdomain.co.ke</a></div></div>
+      <div class="footer-column"><h2>Follow our blooms</h2><div class="footer-links"><a class="footer-link" href="https://www.instagram.com/wemspetals?gwpx=MWQzZTJtYmg2M3E5ag%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer"><span class="footer-icon" aria-hidden="true">◎</span>Instagram · @wemspetals</a><a class="footer-link" href="https://www.tiktok.com/@wemspetals?_r=1&_t=ZS-9BVqvz4AVCJ" target="_blank" rel="noopener noreferrer"><span class="footer-icon" aria-hidden="true">♪</span>TikTok · @wemspetals</a></div></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 WEM'S PETALS AND DECOR</span><span>Handmade with care in Kenya</span></div>
+  </footer>
+</body>
+</html>
