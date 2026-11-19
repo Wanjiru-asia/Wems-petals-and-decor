@@ -91,13 +91,7 @@ addonChecks.forEach(checkbox => {
     updateEstimate();
   }));
 });
-document.querySelector("#confirm-finish").addEventListener("click", () => {
-  const chosen = selectedFinish();
-  finishConfirmation.textContent = chosen ? `${chosen} selected. Continue choosing your size and colour below.` : "Please choose Ribbon Roses or Glitter Roses first.";
-  finishConfirmation.classList.toggle("confirmed", Boolean(chosen));
-});
-deliveryMethod.addEventListener("change", updateEstimate);
-updateEstimate();
+
 
 inspiration.addEventListener("change", () => {
   const selectedFile = inspiration.files[0];
@@ -158,5 +152,4 @@ form.addEventListener("submit", event => {
   ].filter(Boolean).join("\n");
 
   const whatsappUrl = `https://wa.me/254746053722?text=${encodeURIComponent(message)}`;
-  window.location.assign(whatsappUrl);
-});
+window.open(whatsappUrl, "_blank", "noopener,noreferrer");});
