@@ -157,5 +157,6 @@ form.addEventListener("submit", event => {
     selectedFile ? `I have an inspiration photo (${selectedFile.name}) and will attach it in this WhatsApp chat.` : ""
   ].filter(Boolean).join("\n");
 
-  window.open(`https://wa.me/254746053722?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+  const whatsappUrl = `https://wa.me/254746053722?text=${encodeURIComponent(message)}`;
+  window.location.assign(whatsappUrl);
 });
